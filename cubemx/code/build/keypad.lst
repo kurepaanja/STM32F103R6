@@ -1,0 +1,677 @@
+ARM GAS  C:\Users\Djuradj\AppData\Local\Temp\cc3VXVZl.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 1
+   9              		.eabi_attribute 34, 1
+  10              		.eabi_attribute 18, 4
+  11              		.file	"keypad.c"
+  12              		.text
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.section	.text.KEY_Timer,"ax",%progbits
+  16              		.align	1
+  17              		.global	KEY_Timer
+  18              		.arch armv7-m
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  22              		.fpu softvfp
+  24              	KEY_Timer:
+  25              	.LVL0:
+  26              	.LFB71:
+  27              		.file 1 "../Core/Src/keypad.c"
+   1:../Core/Src/keypad.c **** 
+  28              		.loc 1 71 38 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		.loc 1 71 38 is_stmt 0 view .LVU1
+  33 0000 10B5     		push	{r4, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 8
+  36              		.cfi_offset 4, -8
+  37              		.cfi_offset 14, -4
+  38 0002 82B0     		sub	sp, sp, #8
+  39              	.LCFI1:
+  40              		.cfi_def_cfa_offset 16
+  41              		.loc 1 72 2 is_stmt 1 view .LVU2
+  42              		.loc 1 73 2 view .LVU3
+  43              		.loc 1 73 6 is_stmt 0 view .LVU4
+  44 0004 8021     		movs	r1, #128
+  45 0006 0C48     		ldr	r0, .L6
+  46              	.LVL1:
+  47              		.loc 1 73 6 view .LVU5
+  48 0008 0C4B     		ldr	r3, .L6+4
+  49 000a 9847     		blx	r3
+  50              	.LVL2:
+  51              		.loc 1 73 5 view .LVU6
+  52 000c 0128     		cmp	r0, #1
+  53 000e 04D0     		beq	.L5
+  54              		.loc 1 76 3 is_stmt 1 view .LVU7
+  55              		.loc 1 76 15 is_stmt 0 view .LVU8
+  56 0010 0B4B     		ldr	r3, .L6+8
+  57 0012 0122     		movs	r2, #1
+ARM GAS  C:\Users\Djuradj\AppData\Local\Temp\cc3VXVZl.s 			page 2
+
+
+  58 0014 1A60     		str	r2, [r3]
+  59              	.L1:
+  60              		.loc 1 78 1 view .LVU9
+  61 0016 02B0     		add	sp, sp, #8
+  62              	.LCFI2:
+  63              		.cfi_remember_state
+  64              		.cfi_def_cfa_offset 8
+  65              		@ sp needed
+  66 0018 10BD     		pop	{r4, pc}
+  67              	.L5:
+  68              	.LCFI3:
+  69              		.cfi_restore_state
+  70              		.loc 1 74 3 is_stmt 1 view .LVU10
+  71 001a 0A4B     		ldr	r3, .L6+12
+  72 001c 1C68     		ldr	r4, [r3]
+  73 001e 0A4B     		ldr	r3, .L6+16
+  74 0020 9847     		blx	r3
+  75              	.LVL3:
+  76 0022 0246     		mov	r2, r0
+  77 0024 4FF0FF33 		mov	r3, #-1
+  78 0028 0093     		str	r3, [sp]
+  79 002a 0023     		movs	r3, #0
+  80 002c 0121     		movs	r1, #1
+  81 002e 2046     		mov	r0, r4
+  82 0030 064C     		ldr	r4, .L6+20
+  83 0032 A047     		blx	r4
+  84              	.LVL4:
+  85 0034 EFE7     		b	.L1
+  86              	.L7:
+  87 0036 00BF     		.align	2
+  88              	.L6:
+  89 0038 000C0140 		.word	1073810432
+  90 003c 00000000 		.word	HAL_GPIO_ReadPin
+  91 0040 00000000 		.word	.LANCHOR1
+  92 0044 00000000 		.word	.LANCHOR0
+  93 0048 00000000 		.word	xTaskGetTickCount
+  94 004c 00000000 		.word	xTimerGenericCommand
+  95              		.cfi_endproc
+  96              	.LFE71:
+  98              		.section	.text.KEY_Task,"ax",%progbits
+  99              		.align	1
+ 100              		.syntax unified
+ 101              		.thumb
+ 102              		.thumb_func
+ 103              		.fpu softvfp
+ 105              	KEY_Task:
+ 106              	.LVL5:
+ 107              	.LFB70:
+ 108              		.loc 1 34 40 view -0
+ 109              		.cfi_startproc
+ 110              		@ args = 0, pretend = 0, frame = 0
+ 111              		@ frame_needed = 0, uses_anonymous_args = 0
+ 112              		.loc 1 34 40 is_stmt 0 view .LVU12
+ 113 0000 2DE9F043 		push	{r4, r5, r6, r7, r8, r9, lr}
+ 114              	.LCFI4:
+ 115              		.cfi_def_cfa_offset 28
+ 116              		.cfi_offset 4, -28
+ARM GAS  C:\Users\Djuradj\AppData\Local\Temp\cc3VXVZl.s 			page 3
+
+
+ 117              		.cfi_offset 5, -24
+ 118              		.cfi_offset 6, -20
+ 119              		.cfi_offset 7, -16
+ 120              		.cfi_offset 8, -12
+ 121              		.cfi_offset 9, -8
+ 122              		.cfi_offset 14, -4
+ 123 0004 83B0     		sub	sp, sp, #12
+ 124              	.LCFI5:
+ 125              		.cfi_def_cfa_offset 40
+ 126              		.loc 1 35 2 is_stmt 1 view .LVU13
+ 127              		.loc 1 36 2 view .LVU14
+ 128              		.loc 1 36 10 is_stmt 0 view .LVU15
+ 129 0006 3B4B     		ldr	r3, .L24
+ 130 0008 3F22     		movs	r2, #63
+ 131 000a 1A70     		strb	r2, [r3]
+ 132              		.loc 1 37 2 is_stmt 1 view .LVU16
+ 133              		.loc 1 37 10 is_stmt 0 view .LVU17
+ 134 000c 5A70     		strb	r2, [r3, #1]
+ 135 000e 0FE0     		b	.L9
+ 136              	.LVL6:
+ 137              	.L11:
+ 138              	.LBB2:
+ 139              		.loc 1 40 4 is_stmt 1 discriminator 3 view .LVU18
+ 140              		.loc 1 40 32 is_stmt 0 discriminator 3 view .LVU19
+ 141 0010 0122     		movs	r2, #1
+ 142 0012 02FA04F1 		lsl	r1, r2, r4
+ 143              		.loc 1 40 4 discriminator 3 view .LVU20
+ 144 0016 89B2     		uxth	r1, r1
+ 145 0018 3748     		ldr	r0, .L24+4
+ 146 001a 384B     		ldr	r3, .L24+8
+ 147 001c 9847     		blx	r3
+ 148              	.LVL7:
+ 149              		.loc 1 39 30 is_stmt 1 discriminator 3 view .LVU21
+ 150 001e 0134     		adds	r4, r4, #1
+ 151              	.LVL8:
+ 152              	.L10:
+ 153              		.loc 1 39 21 discriminator 1 view .LVU22
+ 154              		.loc 1 39 3 is_stmt 0 discriminator 1 view .LVU23
+ 155 0020 032C     		cmp	r4, #3
+ 156 0022 F5DD     		ble	.L11
+ 157              	.LBE2:
+ 158              		.loc 1 42 3 is_stmt 1 view .LVU24
+ 159 0024 0A20     		movs	r0, #10
+ 160 0026 364B     		ldr	r3, .L24+12
+ 161 0028 9847     		blx	r3
+ 162              	.LVL9:
+ 163              		.loc 1 43 3 view .LVU25
+ 164              		.loc 1 43 7 is_stmt 0 view .LVU26
+ 165 002a 364B     		ldr	r3, .L24+16
+ 166 002c 1B68     		ldr	r3, [r3]
+ 167              		.loc 1 43 6 view .LVU27
+ 168 002e 0BB9     		cbnz	r3, .L22
+ 169              	.LVL10:
+ 170              	.L9:
+ 171              		.loc 1 38 2 is_stmt 1 view .LVU28
+ 172              		.loc 1 39 3 view .LVU29
+ 173              	.LBB3:
+ARM GAS  C:\Users\Djuradj\AppData\Local\Temp\cc3VXVZl.s 			page 4
+
+
+ 174              		.loc 1 39 8 view .LVU30
+ 175              		.loc 1 39 12 is_stmt 0 view .LVU31
+ 176 0030 0024     		movs	r4, #0
+ 177              		.loc 1 39 3 view .LVU32
+ 178 0032 F5E7     		b	.L10
+ 179              	.LVL11:
+ 180              	.L22:
+ 181              		.loc 1 39 3 view .LVU33
+ 182              	.LBE3:
+ 183              	.LBB4:
+ 184              		.loc 1 46 12 view .LVU34
+ 185 0034 0024     		movs	r4, #0
+ 186              	.LVL12:
+ 187              		.loc 1 46 12 view .LVU35
+ 188 0036 07E0     		b	.L13
+ 189              	.LVL13:
+ 190              	.L14:
+ 191              		.loc 1 47 4 is_stmt 1 discriminator 3 view .LVU36
+ 192              		.loc 1 47 32 is_stmt 0 discriminator 3 view .LVU37
+ 193 0038 0121     		movs	r1, #1
+ 194 003a A140     		lsls	r1, r1, r4
+ 195              		.loc 1 47 4 discriminator 3 view .LVU38
+ 196 003c 0022     		movs	r2, #0
+ 197 003e 89B2     		uxth	r1, r1
+ 198 0040 2D48     		ldr	r0, .L24+4
+ 199 0042 2E4B     		ldr	r3, .L24+8
+ 200 0044 9847     		blx	r3
+ 201              	.LVL14:
+ 202              		.loc 1 46 30 is_stmt 1 discriminator 3 view .LVU39
+ 203 0046 0134     		adds	r4, r4, #1
+ 204              	.LVL15:
+ 205              	.L13:
+ 206              		.loc 1 46 21 discriminator 1 view .LVU40
+ 207              		.loc 1 46 3 is_stmt 0 discriminator 1 view .LVU41
+ 208 0048 032C     		cmp	r4, #3
+ 209 004a F5DD     		ble	.L14
+ 210              	.LBE4:
+ 211              	.LBB5:
+ 212              		.loc 1 49 12 view .LVU42
+ 213 004c 0025     		movs	r5, #0
+ 214 004e 45E0     		b	.L15
+ 215              	.LVL16:
+ 216              	.L18:
+ 217              	.LBB6:
+ 218              		.loc 1 60 6 is_stmt 1 view .LVU43
+ 219              		.loc 1 60 19 is_stmt 0 view .LVU44
+ 220 0050 C3F10103 		rsb	r3, r3, #1
+ 221              		.loc 1 60 15 view .LVU45
+ 222 0054 2C4A     		ldr	r2, .L24+20
+ 223 0056 1360     		str	r3, [r2]
+ 224              		.loc 1 61 6 is_stmt 1 view .LVU46
+ 225              		.loc 1 61 18 is_stmt 0 view .LVU47
+ 226 0058 0127     		movs	r7, #1
+ 227 005a 2C4B     		ldr	r3, .L24+24
+ 228 005c 1F60     		str	r7, [r3]
+ 229              		.loc 1 62 6 is_stmt 1 view .LVU48
+ 230              		.loc 1 62 18 is_stmt 0 view .LVU49
+ARM GAS  C:\Users\Djuradj\AppData\Local\Temp\cc3VXVZl.s 			page 5
+
+
+ 231 005e 4FF00008 		mov	r8, #0
+ 232 0062 284B     		ldr	r3, .L24+16
+ 233 0064 C3F80080 		str	r8, [r3]
+ 234              		.loc 1 63 6 is_stmt 1 view .LVU50
+ 235 0068 294B     		ldr	r3, .L24+28
+ 236 006a D3F80090 		ldr	r9, [r3]
+ 237 006e 294B     		ldr	r3, .L24+32
+ 238 0070 9847     		blx	r3
+ 239              	.LVL17:
+ 240 0072 0246     		mov	r2, r0
+ 241 0074 4FF0FF33 		mov	r3, #-1
+ 242 0078 0093     		str	r3, [sp]
+ 243 007a 4346     		mov	r3, r8
+ 244 007c 3946     		mov	r1, r7
+ 245 007e 4846     		mov	r0, r9
+ 246 0080 254F     		ldr	r7, .L24+36
+ 247 0082 B847     		blx	r7
+ 248              	.LVL18:
+ 249              	.L17:
+ 250              		.loc 1 51 37 discriminator 2 view .LVU51
+ 251 0084 0134     		adds	r4, r4, #1
+ 252              	.LVL19:
+ 253              	.L16:
+ 254              		.loc 1 51 25 discriminator 1 view .LVU52
+ 255              		.loc 1 51 4 is_stmt 0 discriminator 1 view .LVU53
+ 256 0086 022C     		cmp	r4, #2
+ 257 0088 22DC     		bgt	.L23
+ 258              		.loc 1 52 5 is_stmt 1 view .LVU54
+ 259              		.loc 1 52 42 is_stmt 0 view .LVU55
+ 260 008a 231D     		adds	r3, r4, #4
+ 261              		.loc 1 52 36 view .LVU56
+ 262 008c 0121     		movs	r1, #1
+ 263 008e 9940     		lsls	r1, r1, r3
+ 264              		.loc 1 52 9 view .LVU57
+ 265 0090 89B2     		uxth	r1, r1
+ 266 0092 1948     		ldr	r0, .L24+4
+ 267 0094 214B     		ldr	r3, .L24+40
+ 268 0096 9847     		blx	r3
+ 269              	.LVL20:
+ 270              		.loc 1 52 8 view .LVU58
+ 271 0098 0128     		cmp	r0, #1
+ 272 009a F3D1     		bne	.L17
+ 273              		.loc 1 54 6 is_stmt 1 view .LVU59
+ 274              		.loc 1 54 10 is_stmt 0 view .LVU60
+ 275 009c 1A4B     		ldr	r3, .L24+20
+ 276 009e 1B68     		ldr	r3, [r3]
+ 277              		.loc 1 54 38 view .LVU61
+ 278 00a0 05EB4501 		add	r1, r5, r5, lsl #1
+ 279 00a4 1E4A     		ldr	r2, .L24+44
+ 280 00a6 0A44     		add	r2, r2, r1
+ 281 00a8 115D     		ldrb	r1, [r2, r4]	@ zero_extendqisi2
+ 282              		.loc 1 54 21 view .LVU62
+ 283 00aa 124A     		ldr	r2, .L24
+ 284 00ac D154     		strb	r1, [r2, r3]
+ 285              		.loc 1 55 6 is_stmt 1 view .LVU63
+ 286              		.loc 1 55 9 is_stmt 0 view .LVU64
+ 287 00ae 012B     		cmp	r3, #1
+ARM GAS  C:\Users\Djuradj\AppData\Local\Temp\cc3VXVZl.s 			page 6
+
+
+ 288 00b0 CED1     		bne	.L18
+ 289              		.loc 1 56 7 is_stmt 1 view .LVU65
+ 290              		.loc 1 56 27 is_stmt 0 view .LVU66
+ 291 00b2 1046     		mov	r0, r2
+ 292 00b4 1278     		ldrb	r2, [r2]	@ zero_extendqisi2
+ 293              		.loc 1 56 31 view .LVU67
+ 294 00b6 303A     		subs	r2, r2, #48
+ 295              		.loc 1 56 38 view .LVU68
+ 296 00b8 02EB8202 		add	r2, r2, r2, lsl #2
+ 297              		.loc 1 56 49 view .LVU69
+ 298 00bc 4178     		ldrb	r1, [r0, #1]	@ zero_extendqisi2
+ 299              		.loc 1 56 43 view .LVU70
+ 300 00be 01EB4202 		add	r2, r1, r2, lsl #1
+ 301              		.loc 1 56 53 view .LVU71
+ 302 00c2 303A     		subs	r2, r2, #48
+ 303              		.loc 1 56 20 view .LVU72
+ 304 00c4 1749     		ldr	r1, .L24+48
+ 305 00c6 0A60     		str	r2, [r1]
+ 306              		.loc 1 57 7 is_stmt 1 view .LVU73
+ 307              		.loc 1 57 15 is_stmt 0 view .LVU74
+ 308 00c8 3F22     		movs	r2, #63
+ 309 00ca 0270     		strb	r2, [r0]
+ 310              		.loc 1 58 7 is_stmt 1 view .LVU75
+ 311              		.loc 1 58 15 is_stmt 0 view .LVU76
+ 312 00cc 4270     		strb	r2, [r0, #1]
+ 313 00ce BFE7     		b	.L18
+ 314              	.L23:
+ 315              		.loc 1 58 15 view .LVU77
+ 316              	.LBE6:
+ 317              		.loc 1 66 4 is_stmt 1 discriminator 2 view .LVU78
+ 318 00d0 0022     		movs	r2, #0
+ 319 00d2 3146     		mov	r1, r6
+ 320 00d4 0848     		ldr	r0, .L24+4
+ 321 00d6 094B     		ldr	r3, .L24+8
+ 322 00d8 9847     		blx	r3
+ 323              	.LVL21:
+ 324              		.loc 1 49 30 discriminator 2 view .LVU79
+ 325 00da 0135     		adds	r5, r5, #1
+ 326              	.LVL22:
+ 327              	.L15:
+ 328              		.loc 1 49 21 discriminator 1 view .LVU80
+ 329              		.loc 1 49 3 is_stmt 0 discriminator 1 view .LVU81
+ 330 00dc 032D     		cmp	r5, #3
+ 331 00de A7DC     		bgt	.L9
+ 332              		.loc 1 50 4 is_stmt 1 view .LVU82
+ 333              		.loc 1 50 32 is_stmt 0 view .LVU83
+ 334 00e0 0122     		movs	r2, #1
+ 335 00e2 02FA05F6 		lsl	r6, r2, r5
+ 336              		.loc 1 50 4 view .LVU84
+ 337 00e6 B6B2     		uxth	r6, r6
+ 338 00e8 3146     		mov	r1, r6
+ 339 00ea 0348     		ldr	r0, .L24+4
+ 340 00ec 034B     		ldr	r3, .L24+8
+ 341 00ee 9847     		blx	r3
+ 342              	.LVL23:
+ 343              		.loc 1 51 4 is_stmt 1 view .LVU85
+ 344              	.LBB7:
+ARM GAS  C:\Users\Djuradj\AppData\Local\Temp\cc3VXVZl.s 			page 7
+
+
+ 345              		.loc 1 51 9 view .LVU86
+ 346              		.loc 1 51 13 is_stmt 0 view .LVU87
+ 347 00f0 0024     		movs	r4, #0
+ 348              		.loc 1 51 4 view .LVU88
+ 349 00f2 C8E7     		b	.L16
+ 350              	.L25:
+ 351              		.align	2
+ 352              	.L24:
+ 353 00f4 00000000 		.word	.LANCHOR2
+ 354 00f8 000C0140 		.word	1073810432
+ 355 00fc 00000000 		.word	HAL_GPIO_WritePin
+ 356 0100 00000000 		.word	vTaskDelay
+ 357 0104 00000000 		.word	.LANCHOR1
+ 358 0108 00000000 		.word	.LANCHOR3
+ 359 010c 00000000 		.word	.LANCHOR6
+ 360 0110 00000000 		.word	.LANCHOR0
+ 361 0114 00000000 		.word	xTaskGetTickCount
+ 362 0118 00000000 		.word	xTimerGenericCommand
+ 363 011c 00000000 		.word	HAL_GPIO_ReadPin
+ 364 0120 00000000 		.word	.LANCHOR4
+ 365 0124 00000000 		.word	.LANCHOR5
+ 366              	.LBE7:
+ 367              	.LBE5:
+ 368              		.cfi_endproc
+ 369              	.LFE70:
+ 371              		.section	.text.HAL_GPIO_EXTI_Callback,"ax",%progbits
+ 372              		.align	1
+ 373              		.global	HAL_GPIO_EXTI_Callback
+ 374              		.syntax unified
+ 375              		.thumb
+ 376              		.thumb_func
+ 377              		.fpu softvfp
+ 379              	HAL_GPIO_EXTI_Callback:
+ 380              	.LVL24:
+ 381              	.LFB69:
+ 382              		.loc 1 24 48 is_stmt 1 view -0
+ 383              		.cfi_startproc
+ 384              		@ args = 0, pretend = 0, frame = 8
+ 385              		@ frame_needed = 0, uses_anonymous_args = 0
+ 386              		.loc 1 24 48 is_stmt 0 view .LVU90
+ 387 0000 00B5     		push	{lr}
+ 388              	.LCFI6:
+ 389              		.cfi_def_cfa_offset 4
+ 390              		.cfi_offset 14, -4
+ 391 0002 83B0     		sub	sp, sp, #12
+ 392              	.LCFI7:
+ 393              		.cfi_def_cfa_offset 16
+ 394              		.loc 1 25 2 is_stmt 1 view .LVU91
+ 395              		.loc 1 25 5 is_stmt 0 view .LVU92
+ 396 0004 8028     		cmp	r0, #128
+ 397 0006 05D0     		beq	.L31
+ 398              		.loc 1 29 9 is_stmt 1 view .LVU93
+ 399              		.loc 1 29 12 is_stmt 0 view .LVU94
+ 400 0008 B0F5806F 		cmp	r0, #1024
+ 401 000c 17D0     		beq	.L32
+ 402              	.LVL25:
+ 403              	.L26:
+ARM GAS  C:\Users\Djuradj\AppData\Local\Temp\cc3VXVZl.s 			page 8
+
+
+ 404              		.loc 1 32 1 view .LVU95
+ 405 000e 03B0     		add	sp, sp, #12
+ 406              	.LCFI8:
+ 407              		.cfi_remember_state
+ 408              		.cfi_def_cfa_offset 4
+ 409              		@ sp needed
+ 410 0010 5DF804FB 		ldr	pc, [sp], #4
+ 411              	.LVL26:
+ 412              	.L31:
+ 413              	.LCFI9:
+ 414              		.cfi_restore_state
+ 415              	.LBB8:
+ 416              		.loc 1 26 3 is_stmt 1 view .LVU96
+ 417              		.loc 1 26 14 is_stmt 0 view .LVU97
+ 418 0014 0023     		movs	r3, #0
+ 419 0016 0193     		str	r3, [sp, #4]
+ 420              		.loc 1 27 3 is_stmt 1 view .LVU98
+ 421 0018 01A9     		add	r1, sp, #4
+ 422 001a 0A4B     		ldr	r3, .L33
+ 423 001c 1868     		ldr	r0, [r3]
+ 424              	.LVL27:
+ 425              		.loc 1 27 3 is_stmt 0 view .LVU99
+ 426 001e 0A4B     		ldr	r3, .L33+4
+ 427 0020 9847     		blx	r3
+ 428              	.LVL28:
+ 429              		.loc 1 28 3 is_stmt 1 view .LVU100
+ 430 0022 019B     		ldr	r3, [sp, #4]
+ 431 0024 002B     		cmp	r3, #0
+ 432 0026 F2D0     		beq	.L26
+ 433              		.loc 1 28 3 discriminator 1 view .LVU101
+ 434 0028 4FF0E023 		mov	r3, #-536813568
+ 435 002c 4FF08052 		mov	r2, #268435456
+ 436 0030 C3F8042D 		str	r2, [r3, #3332]
+ 437              		.loc 1 28 3 discriminator 1 view .LVU102
+ 438              		.syntax unified
+ 439              	@ 28 "Core/Src/keypad.c" 1
+ 440 0034 BFF34F8F 		dsb
+ 441              	@ 0 "" 2
+ 442              		.loc 1 28 3 discriminator 1 view .LVU103
+ 443              	@ 28 "Core/Src/keypad.c" 1
+ 444 0038 BFF36F8F 		isb
+ 445              	@ 0 "" 2
+ 446              		.loc 1 28 32 discriminator 1 view .LVU104
+ 447              		.thumb
+ 448              		.syntax unified
+ 449 003c E7E7     		b	.L26
+ 450              	.LVL29:
+ 451              	.L32:
+ 452              		.loc 1 28 32 is_stmt 0 discriminator 1 view .LVU105
+ 453              	.LBE8:
+ 454              		.loc 1 30 3 is_stmt 1 view .LVU106
+ 455 003e 034B     		ldr	r3, .L33+8
+ 456 0040 9847     		blx	r3
+ 457              	.LVL30:
+ 458              		.loc 1 32 1 is_stmt 0 view .LVU107
+ 459 0042 E4E7     		b	.L26
+ 460              	.L34:
+ARM GAS  C:\Users\Djuradj\AppData\Local\Temp\cc3VXVZl.s 			page 9
+
+
+ 461              		.align	2
+ 462              	.L33:
+ 463 0044 00000000 		.word	.LANCHOR7
+ 464 0048 00000000 		.word	vTaskNotifyGiveFromISR
+ 465 004c 00000000 		.word	homeworkOverflow
+ 466              		.cfi_endproc
+ 467              	.LFE69:
+ 469              		.section	.rodata.KEY_Init.str1.4,"aMS",%progbits,1
+ 470              		.align	2
+ 471              	.LC0:
+ 472 0000 4B45595F 		.ascii	"KEY_Task\000"
+ 472      5461736B 
+ 472      00
+ 473 0009 000000   		.align	2
+ 474              	.LC1:
+ 475 000c 4B45595F 		.ascii	"KEY_Timer\000"
+ 475      54696D65 
+ 475      7200
+ 476              		.section	.text.KEY_Init,"ax",%progbits
+ 477              		.align	1
+ 478              		.global	KEY_Init
+ 479              		.syntax unified
+ 480              		.thumb
+ 481              		.thumb_func
+ 482              		.fpu softvfp
+ 484              	KEY_Init:
+ 485              	.LFB72:
+ 486              		.loc 1 80 17 is_stmt 1 view -0
+ 487              		.cfi_startproc
+ 488              		@ args = 0, pretend = 0, frame = 0
+ 489              		@ frame_needed = 0, uses_anonymous_args = 0
+ 490 0000 10B5     		push	{r4, lr}
+ 491              	.LCFI10:
+ 492              		.cfi_def_cfa_offset 8
+ 493              		.cfi_offset 4, -8
+ 494              		.cfi_offset 14, -4
+ 495 0002 82B0     		sub	sp, sp, #8
+ 496              	.LCFI11:
+ 497              		.cfi_def_cfa_offset 16
+ 498              		.loc 1 81 2 view .LVU109
+ 499 0004 0A4B     		ldr	r3, .L37
+ 500 0006 0193     		str	r3, [sp, #4]
+ 501 0008 0523     		movs	r3, #5
+ 502 000a 0093     		str	r3, [sp]
+ 503 000c 0023     		movs	r3, #0
+ 504 000e 8022     		movs	r2, #128
+ 505 0010 0849     		ldr	r1, .L37+4
+ 506 0012 0948     		ldr	r0, .L37+8
+ 507 0014 094C     		ldr	r4, .L37+12
+ 508 0016 A047     		blx	r4
+ 509              	.LVL31:
+ 510              		.loc 1 82 2 view .LVU110
+ 511              		.loc 1 82 20 is_stmt 0 view .LVU111
+ 512 0018 094B     		ldr	r3, .L37+16
+ 513 001a 0093     		str	r3, [sp]
+ 514 001c 0023     		movs	r3, #0
+ 515 001e 1A46     		mov	r2, r3
+ARM GAS  C:\Users\Djuradj\AppData\Local\Temp\cc3VXVZl.s 			page 10
+
+
+ 516 0020 0A21     		movs	r1, #10
+ 517 0022 0848     		ldr	r0, .L37+20
+ 518 0024 084C     		ldr	r4, .L37+24
+ 519 0026 A047     		blx	r4
+ 520              	.LVL32:
+ 521              		.loc 1 82 18 view .LVU112
+ 522 0028 084B     		ldr	r3, .L37+28
+ 523 002a 1860     		str	r0, [r3]
+ 524              		.loc 1 84 1 view .LVU113
+ 525 002c 02B0     		add	sp, sp, #8
+ 526              	.LCFI12:
+ 527              		.cfi_def_cfa_offset 8
+ 528              		@ sp needed
+ 529 002e 10BD     		pop	{r4, pc}
+ 530              	.L38:
+ 531              		.align	2
+ 532              	.L37:
+ 533 0030 00000000 		.word	.LANCHOR7
+ 534 0034 00000000 		.word	.LC0
+ 535 0038 00000000 		.word	KEY_Task
+ 536 003c 00000000 		.word	xTaskCreate
+ 537 0040 00000000 		.word	KEY_Timer
+ 538 0044 0C000000 		.word	.LC1
+ 539 0048 00000000 		.word	xTimerCreate
+ 540 004c 00000000 		.word	.LANCHOR0
+ 541              		.cfi_endproc
+ 542              	.LFE72:
+ 544              		.global	KEY_MATRIX
+ 545              		.global	KEY_TimerHandle
+ 546              		.global	KEY_TaskHandle
+ 547              		.global	keysChanged
+ 548              		.global	temp_granica
+ 549              		.global	keys
+ 550              		.section	.bss.KEY_TaskHandle,"aw",%nobits
+ 551              		.align	2
+ 552              		.set	.LANCHOR7,. + 0
+ 555              	KEY_TaskHandle:
+ 556 0000 00000000 		.space	4
+ 557              		.section	.bss.KEY_TimerHandle,"aw",%nobits
+ 558              		.align	2
+ 559              		.set	.LANCHOR0,. + 0
+ 562              	KEY_TimerHandle:
+ 563 0000 00000000 		.space	4
+ 564              		.section	.bss.keyCount,"aw",%nobits
+ 565              		.align	2
+ 566              		.set	.LANCHOR3,. + 0
+ 569              	keyCount:
+ 570 0000 00000000 		.space	4
+ 571              		.section	.bss.keys,"aw",%nobits
+ 572              		.align	2
+ 573              		.set	.LANCHOR2,. + 0
+ 576              	keys:
+ 577 0000 0000     		.space	2
+ 578              		.section	.data.keyReleased,"aw"
+ 579              		.align	2
+ 580              		.set	.LANCHOR1,. + 0
+ 583              	keyReleased:
+ARM GAS  C:\Users\Djuradj\AppData\Local\Temp\cc3VXVZl.s 			page 11
+
+
+ 584 0000 01000000 		.word	1
+ 585              		.section	.data.keysChanged,"aw"
+ 586              		.align	2
+ 587              		.set	.LANCHOR6,. + 0
+ 590              	keysChanged:
+ 591 0000 01000000 		.word	1
+ 592              		.section	.data.temp_granica,"aw"
+ 593              		.align	2
+ 594              		.set	.LANCHOR5,. + 0
+ 597              	temp_granica:
+ 598 0000 1E000000 		.word	30
+ 599              		.section	.rodata.KEY_MATRIX,"a"
+ 600              		.align	2
+ 601              		.set	.LANCHOR4,. + 0
+ 604              	KEY_MATRIX:
+ 605 0000 313233   		.ascii	"123"
+ 606 0003 343536   		.ascii	"456"
+ 607 0006 373839   		.ascii	"789"
+ 608 0009 2A3023   		.ascii	"*0#"
+ 609              		.text
+ 610              	.Letext0:
+ 611              		.file 2 "../Core/Inc/keypad.h"
+ 612              		.file 3 "../d:\\mips\\gnu mcu\\arm-none-eabi-gcc-10.2.1-1.1\\arm-none-eabi\\include\\machine\\_def
+ 613              		.file 4 "../d:\\mips\\gnu mcu\\arm-none-eabi-gcc-10.2.1-1.1\\arm-none-eabi\\include\\sys\\_stdint.
+ 614              		.file 5 "../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/portmacro.h"
+ 615              		.file 6 "../Middlewares/Third_Party/FreeRTOS/Source/include/task.h"
+ 616              		.file 7 "../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h"
+ 617              		.file 8 "../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103x6.h"
+ 618              		.file 9 "../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h"
+ARM GAS  C:\Users\Djuradj\AppData\Local\Temp\cc3VXVZl.s 			page 12
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 keypad.c
+C:\Users\Djuradj\AppData\Local\Temp\cc3VXVZl.s:16     .text.KEY_Timer:0000000000000000 $t
+C:\Users\Djuradj\AppData\Local\Temp\cc3VXVZl.s:24     .text.KEY_Timer:0000000000000000 KEY_Timer
+C:\Users\Djuradj\AppData\Local\Temp\cc3VXVZl.s:89     .text.KEY_Timer:0000000000000038 $d
+C:\Users\Djuradj\AppData\Local\Temp\cc3VXVZl.s:99     .text.KEY_Task:0000000000000000 $t
+C:\Users\Djuradj\AppData\Local\Temp\cc3VXVZl.s:105    .text.KEY_Task:0000000000000000 KEY_Task
+C:\Users\Djuradj\AppData\Local\Temp\cc3VXVZl.s:353    .text.KEY_Task:00000000000000f4 $d
+C:\Users\Djuradj\AppData\Local\Temp\cc3VXVZl.s:372    .text.HAL_GPIO_EXTI_Callback:0000000000000000 $t
+C:\Users\Djuradj\AppData\Local\Temp\cc3VXVZl.s:379    .text.HAL_GPIO_EXTI_Callback:0000000000000000 HAL_GPIO_EXTI_Callback
+C:\Users\Djuradj\AppData\Local\Temp\cc3VXVZl.s:463    .text.HAL_GPIO_EXTI_Callback:0000000000000044 $d
+C:\Users\Djuradj\AppData\Local\Temp\cc3VXVZl.s:470    .rodata.KEY_Init.str1.4:0000000000000000 $d
+C:\Users\Djuradj\AppData\Local\Temp\cc3VXVZl.s:477    .text.KEY_Init:0000000000000000 $t
+C:\Users\Djuradj\AppData\Local\Temp\cc3VXVZl.s:484    .text.KEY_Init:0000000000000000 KEY_Init
+C:\Users\Djuradj\AppData\Local\Temp\cc3VXVZl.s:533    .text.KEY_Init:0000000000000030 $d
+C:\Users\Djuradj\AppData\Local\Temp\cc3VXVZl.s:604    .rodata.KEY_MATRIX:0000000000000000 KEY_MATRIX
+C:\Users\Djuradj\AppData\Local\Temp\cc3VXVZl.s:562    .bss.KEY_TimerHandle:0000000000000000 KEY_TimerHandle
+C:\Users\Djuradj\AppData\Local\Temp\cc3VXVZl.s:555    .bss.KEY_TaskHandle:0000000000000000 KEY_TaskHandle
+C:\Users\Djuradj\AppData\Local\Temp\cc3VXVZl.s:590    .data.keysChanged:0000000000000000 keysChanged
+C:\Users\Djuradj\AppData\Local\Temp\cc3VXVZl.s:597    .data.temp_granica:0000000000000000 temp_granica
+C:\Users\Djuradj\AppData\Local\Temp\cc3VXVZl.s:576    .bss.keys:0000000000000000 keys
+C:\Users\Djuradj\AppData\Local\Temp\cc3VXVZl.s:551    .bss.KEY_TaskHandle:0000000000000000 $d
+C:\Users\Djuradj\AppData\Local\Temp\cc3VXVZl.s:558    .bss.KEY_TimerHandle:0000000000000000 $d
+C:\Users\Djuradj\AppData\Local\Temp\cc3VXVZl.s:565    .bss.keyCount:0000000000000000 $d
+C:\Users\Djuradj\AppData\Local\Temp\cc3VXVZl.s:569    .bss.keyCount:0000000000000000 keyCount
+C:\Users\Djuradj\AppData\Local\Temp\cc3VXVZl.s:572    .bss.keys:0000000000000000 $d
+C:\Users\Djuradj\AppData\Local\Temp\cc3VXVZl.s:579    .data.keyReleased:0000000000000000 $d
+C:\Users\Djuradj\AppData\Local\Temp\cc3VXVZl.s:583    .data.keyReleased:0000000000000000 keyReleased
+C:\Users\Djuradj\AppData\Local\Temp\cc3VXVZl.s:586    .data.keysChanged:0000000000000000 $d
+C:\Users\Djuradj\AppData\Local\Temp\cc3VXVZl.s:593    .data.temp_granica:0000000000000000 $d
+C:\Users\Djuradj\AppData\Local\Temp\cc3VXVZl.s:600    .rodata.KEY_MATRIX:0000000000000000 $d
+
+UNDEFINED SYMBOLS
+HAL_GPIO_ReadPin
+xTaskGetTickCount
+xTimerGenericCommand
+HAL_GPIO_WritePin
+vTaskDelay
+vTaskNotifyGiveFromISR
+homeworkOverflow
+xTaskCreate
+xTimerCreate
